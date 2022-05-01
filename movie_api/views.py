@@ -10,6 +10,9 @@ from movie_api.serializers import MovieSerializer
 class MovieList(generics.ListAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    
     search_fields = ['name', 'director','popularity','imdb_score', 'genre__name']
+    
+    ordering_fields = ['popularity','imdb_score']
 
